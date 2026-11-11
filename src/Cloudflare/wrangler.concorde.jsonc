@@ -1,0 +1,18 @@
+{
+  // Endereço principal do Concorde: concorde.SEU-SUBDOMINIO.workers.dev.
+  // Publicar (depois do Worker "telinha"):  npx wrangler deploy -c wrangler.concorde.jsonc
+  "name": "concorde",
+  "main": "src/porta-concorde.js",
+  "compatibility_date": "2025-09-01",
+  "services": [{ "binding": "TELINHA", "service": "telinha" }],
+  // Domínio próprio (0.5.10): o Cloudflare liga caocorde.com e www.caocorde.com a este Worker no deploy
+  // (cria o DNS e o certificado sozinho). O index.js trata esses endereços igual ao principal (ehPrincipal).
+  // workers_dev: com "routes", o Cloudflare desliga o endereço *.workers.dev se isto não estiver aqui — e os apps do
+  // Windows e do celular usam concorde.SEU-SUBDOMINIO.workers.dev. NÃO tirar.
+  "workers_dev": true,
+  "preview_urls": false,
+  "routes": [
+    { "pattern": "caocorde.com", "custom_domain": true },
+    { "pattern": "www.caocorde.com", "custom_domain": true }
+  ]
+}

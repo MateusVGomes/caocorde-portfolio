@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Visual do Caocorde: as cores da logo — laranja do Jorginho, grafite do Dobby e o turquesa do olho do gato.
+   As cores e o porquê de cada uma estão em docs/design.md.
+   Os componentes são escritos com as classes escuras (slate); no tailwind.config.js elas viram o grafite. */
+html, body, #app { height: 100%; }
+body {
+  background-color: #111114;
+  /* Um brilho bem leve do laranja nos cantos: dá o calor sem tingir a tela toda. */
+  background-image: radial-gradient(1200px 600px at 10% -10%, rgba(240, 122, 30, .07), transparent 60%),
+                    radial-gradient(900px 500px at 110% 110%, rgba(46, 196, 211, .04), transparent 60%);
+  background-attachment: fixed;
+}
+html:not(.dark) body {
+  background-color: #FFFAF7;
+  background-image: radial-gradient(1200px 600px at 10% -10%, rgba(255, 164, 119, .22), transparent 60%),
+                    radial-gradient(900px 500px at 110% 110%, rgba(249, 139, 87, .12), transparent 60%);
+}
+
+/* Tema escuro (o padrão): não precisa de nada aqui — a escala "slate" do tailwind.config.js já é a do Concorde. */
+
+/* Tema claro (opcional): painéis brancos, detalhes em creme/laranja. */
+html:not(.dark) .bg-slate-900\/60, html:not(.dark) .bg-slate-900\/80, html:not(.dark) .bg-slate-900\/90, html:not(.dark) .bg-slate-900\/95, html:not(.dark) .bg-slate-900 { background-color: rgba(255, 255, 255, .94) !important; }
+html:not(.dark) .bg-slate-950\/40, html:not(.dark) .bg-slate-950\/50, html:not(.dark) .bg-slate-950\/60, html:not(.dark) .bg-slate-950\/70, html:not(.dark) .bg-slate-950\/80, html:not(.dark) .bg-slate-950 { background-color: rgba(255, 244, 230, .95) !important; }
+html:not(.dark) .bg-slate-800\/40, html:not(.dark) .bg-slate-800\/50, html:not(.dark) .bg-slate-800\/60, html:not(.dark) .bg-slate-800\/80, html:not(.dark) .bg-slate-800\/90, html:not(.dark) .bg-slate-800 { background-color: rgba(254, 236, 214, .9) !important; }
+html:not(.dark) .hover\:bg-slate-800\/60:hover, html:not(.dark) .hover\:bg-slate-800\/40:hover, html:not(.dark) .hover\:bg-slate-800\/50:hover, html:not(.dark) .hover\:bg-slate-800:hover, html:not(.dark) .hover\:bg-slate-700\/80:hover, html:not(.dark) .hover\:bg-slate-700:hover { background-color: rgba(253, 216, 170, .7) !important; }
+html:not(.dark) .border-slate-800\/80, html:not(.dark) .border-slate-800, html:not(.dark) .border-slate-700\/80, html:not(.dark) .border-slate-700, html:not(.dark) .border-slate-700\/60 { border-color: #F6DFC6 !important; }
+html:not(.dark) .text-white, html:not(.dark) .text-slate-100, html:not(.dark) .text-slate-200, html:not(.dark) .text-slate-300 { color: #2A1F17 !important; }
+html:not(.dark) .text-slate-400, html:not(.dark) .text-slate-500 { color: #7A6656 !important; }
+html:not(.dark) input, html:not(.dark) textarea, html:not(.dark) select { color: #2A1F17 !important; background-color: #fff !important; border-color: #F1D9BF !important; }
+html:not(.dark) .keep-white, html:not(.dark) .keep-white * { color: #fff !important; }
+html:not(.dark) .bg-black\/60, html:not(.dark) .bg-black\/70 { background-color: rgba(60, 40, 20, .35) !important; }
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(180, 180, 189, .22); border-radius: 9999px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(240, 122, 30, .5); }
+
+/* Gráficos: cores por série (ordem fixa), validadas para o fundo claro e o escuro. */
+.viz { --s1: #2a78d6; --s2: #eb6834; --s3: #1baf7a; --s4: #eda100; --s5: #e87ba4; --s6: #008300; --s7: #6250d6; --s8: #a8a39a; --viz-fundo: #ffffff; }
+html.dark .viz { --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500; --s5: #d55181; --s6: #008300; --s7: #9085e9; --s8: #7d766d; --viz-fundo: #18181C; }
+
+/* Foco do teclado: anel turquesa (o olho do Jorginho) — aparece em qualquer fundo e não se confunde com o laranja. */
+:focus-visible { outline: 2px solid #2EC4D3; outline-offset: 2px; }

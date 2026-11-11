@@ -1,0 +1,3 @@
+# Arquivo GERADO (ferramentas/gerar-worklet-foco-na-voz.mjs) a partir de um arquivo da biblioteca que usa quebra de
+# linha "LF". Fica sempre em LF, também no Windows, para o teste "o arquivo gerado está em dia" comparar igual.
+src/App/src/audio/*.worklet.js text eol=lf

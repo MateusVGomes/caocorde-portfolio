@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+  <!-- Logo do Caocorde: a cabeça em forma de controle de videogame, metade Jorginho (o gato laranja, à esquerda)
+       e metade Dobby (a cachorrinha preta de orelha caída, à direita). Contorno claro para aparecer no fundo escuro.
+       Bochecha do gato = direcional; bochecha da cachorra = os 4 botões. Versão minimalista, sem letras. -->
+  <defs>
+    <linearGradient id="pelo" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FF9A45"/>
+      <stop offset="1" stop-color="#F07A1E"/>
+    </linearGradient>
+    <path id="cabeca" d="M58 70 C92 58 164 58 198 70 C226 80 242 122 246 170 C249 208 230 228 208 220
+           C194 215 184 198 174 186 C158 177 98 177 82 186 C72 198 62 215 48 220
+           C26 228 7 208 10 170 C14 122 30 80 58 70 Z"/>
+    <path id="orelhaGato" d="M56 96 L64 30 Q66 21 75 27 L120 70 Z"/>
+    <path id="orelhaCachorra" d="M138 68 C158 38 210 26 234 46 C252 62 252 108 238 132 C232 142 220 140 216 130 C208 106 190 86 160 76 Z"/>
+    <clipPath id="esquerda"><rect width="128" height="256"/></clipPath>
+    <clipPath id="direita"><rect x="128" width="128" height="256"/></clipPath>
+  </defs>
+
+  <!-- contorno claro (efeito adesivo) -->
+  <g fill="#F1F1F4" stroke="#F1F1F4" stroke-width="12" stroke-linejoin="round">
+    <use href="#orelhaGato"/><use href="#cabeca"/><use href="#orelhaCachorra"/>
+  </g>
+
+  <!-- metade gato -->
+  <use href="#orelhaGato" fill="url(#pelo)"/>
+  <path d="M70 80 L74 44 L102 70 Z" fill="#FFC9C2"/>
+  <use href="#cabeca" fill="url(#pelo)" clip-path="url(#esquerda)"/>
+  <g clip-path="url(#esquerda)">
+    <!-- listras -->
+    <path d="M12 140 Q30 136 44 142 M14 162 Q30 158 42 164 M22 120 Q36 117 48 123" fill="none" stroke="#C2560A" stroke-width="6" stroke-linecap="round"/>
+    <!-- listra branca da testa e focinho -->
+    <path d="M118 62 C116 88 108 116 98 146 C108 172 128 172 128 172 L128 62 Z" fill="#FFFFFF"/>
+    <ellipse cx="128" cy="162" rx="40" ry="24" fill="#FFFFFF"/>
+  </g>
+
+  <!-- metade cachorra -->
+  <use href="#cabeca" fill="#26262C" clip-path="url(#direita)"/>
+  <g clip-path="url(#direita)">
+    <circle cx="214" cy="190" r="8" fill="#3A3A42"/>
+    <circle cx="196" cy="206" r="5" fill="#3A3A42"/>
+    <ellipse cx="128" cy="162" rx="40" ry="24" fill="#4A4A52"/>
+  </g>
+  <use href="#orelhaCachorra" fill="#1A1A1E"/>
+
+  <!-- olho do gato (turquesa, amendoado) e olho da cachorra (redondo) -->
+  <path d="M68 118 Q90 100 112 118 Q90 132 68 118 Z" fill="#2EC4D3"/>
+  <ellipse cx="90" cy="118" rx="3.5" ry="10" fill="#111114"/>
+  <circle cx="168" cy="118" r="12" fill="#F1F1F4"/>
+  <circle cx="170" cy="119" r="7" fill="#111114"/>
+  <circle cx="172" cy="116" r="2.2" fill="#FFFFFF"/>
+
+  <!-- nariz e boquinha -->
+  <path d="M114 148 Q128 140 142 148 Q135 160 128 162 Q121 160 114 148 Z" fill="#111114"/>
+  <path d="M128 162 Q121 175 110 169 M128 162 Q135 175 146 169" fill="none" stroke="#111114" stroke-width="4" stroke-linecap="round"/>
+
+  <!-- direcional (gato) e botões (cachorra) -->
+  <g fill="#FFFFFF">
+    <rect x="44" y="152" width="30" height="10" rx="3"/>
+    <rect x="54" y="142" width="10" height="30" rx="3"/>
+  </g>
+  <circle cx="208" cy="143" r="6" fill="#F2C94C"/>
+  <circle cx="194" cy="157" r="6" fill="#2EC4D3"/>
+  <circle cx="222" cy="157" r="6" fill="#F2777A"/>
+  <circle cx="208" cy="171" r="6" fill="#6FCF97"/>
+</svg>

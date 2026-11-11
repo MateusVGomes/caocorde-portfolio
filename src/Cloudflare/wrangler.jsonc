@@ -1,0 +1,34 @@
+{
+  "name": "telinha",
+  "main": "src/index.js",
+  "compatibility_date": "2025-09-01",
+  // SPA do Concorde (src/App, gerada pelo Vite). Rotas desconhecidas devolvem o index.html.
+  "assets": {
+    "directory": "../App/dist",
+    "binding": "ASSETS",
+    "run_worker_first": true,
+    "not_found_handling": "single-page-application"
+  },
+  "durable_objects": {
+    "bindings": [
+      // Endereço atual do túnel do desktop (transmissor 1.x, em transição).
+      { "name": "ORIGEM", "class_name": "Origem" },
+      // Página antiga: bate-papo e reações por sala.
+      { "name": "SALA", "class_name": "Sala" },
+      // Concorde: contas, canais, mensagens e presença.
+      { "name": "COMUNIDADE", "class_name": "Comunidade" }
+    ]
+  },
+  // Cloudflare Realtime (SFU) da voz e do ao vivo. O token fica no secret CF_APP_TOKEN.
+  // GMAIL_USUARIO: conta que manda os e-mails de recuperação (a senha de app fica no secret GMAIL_SENHA_APP).
+  // Anexos do chat (imagens, vídeos, áudios de até 20 MB). Um cron diário apaga os de mais de 7 dias.
+  "r2_buckets": [{ "binding": "ARQUIVOS", "bucket_name": "concorde-arquivos" }],
+  "triggers": { "crons": ["17 4 * * *"] },
+  "vars": { "CF_APP_ID": "SEU_CF_APP_ID", "GMAIL_USUARIO": "seu-email@gmail.com" },
+  "migrations": [
+    { "tag": "v1", "new_sqlite_classes": ["Origem"] },
+    { "tag": "v2", "new_sqlite_classes": ["Sala"] },
+    { "tag": "v3", "new_sqlite_classes": ["Comunidade"] }
+  ]
+  // Secrets (não ficam neste arquivo): SENHA_REGISTRO, SENHA_TRANSMISSAO, CF_APP_TOKEN (Realtime) e GMAIL_SENHA_APP (e-mail). (CONVITE não é mais usado desde o 0.5.)
+}

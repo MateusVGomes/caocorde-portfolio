@@ -1,0 +1,38 @@
+# Compilados e dependências
+bin/
+obj/
+node_modules/
+dist/
+src/App/dist/
+.vs/
+*.user
+
+# Segredos e dados locais (NUNCA versionar)
+.dev.vars
+.wrangler/
+auto.crt
+auto.key
+servidor.json
+src/Cloudflare/teste-local.md
+
+# Instalador dividido para a atualização automática (gerado pelo installer/gerar-concorde.ps1)
+src/App/public/concorde-app/
+
+# Saídas de diagnóstico
+cursor-diag*/
+*.log
+
+# Android
+src/ConcordeAndroid/.gradle/
+src/ConcordeAndroid/app/build/
+src/ConcordeAndroid/build/
+src/ConcordeAndroid/local.properties
+*.apk
+
+# Contexto local do Claude (pode ter dados de teste; não versionar)
+CLAUDE.md
+src/App/public/concorde-android/
+src/ConcordeAndroid/app/google-services.json
+
+# Miniaturas do Windows Explorer
+Thumbs.db

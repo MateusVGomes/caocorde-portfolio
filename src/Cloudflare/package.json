@@ -1,0 +1,17 @@
+{
+    "name":  "caocorde-cloudflare",
+    "private":  true,
+    "type":  "module",
+    "scripts":  {
+                    "dev":  "wrangler dev",
+                    "deploy":  "wrangler deploy",
+                    "test":  "node --test \"testes/*.test.mjs\"",
+                    "test:ponta-a-ponta":  "node testes/ponta-a-ponta/rodar-todos.mjs"
+                },
+    "devDependencies":  {
+                            "wrangler":  "^4.40.0"
+                        },
+    "allowScripts":  {
+                         "workerd@1.20261019.1":  true
+                     }
+}

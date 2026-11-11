@@ -1,0 +1,55 @@
+plugins {
+    id 'com.android.application'
+}
+// Avisos com o app fechado (Firebase): só quando o construir-apk.ps1 trouxe o google-services.json do projeto
+// Firebase (tutorial em docs/notificacoes-celular.md). Sem ele o APK funciona igual, só sem esses avisos.
+if (file('google-services.json').exists()) apply plugin: 'com.google.gms.google-services'
+
+android {
+    namespace 'com.concorde.app'
+    compileSdk 35
+
+    defaultConfig {
+        applicationId 'com.concorde.app'
+        minSdk 26
+        targetSdk 35
+        versionCode 7
+        versionName '0.5.5'
+    }
+
+    // APK só para a galera (não vai para a Play Store). Chave fixa do Concorde, criada pelo construir-apk.ps1 fora do
+    // git (%LOCALAPPDATA%\ConcordeAndroid\assinatura.properties): o Android só aceita atualizar com a MESMA chave.
+    def arquivoAssinatura = new File(System.getenv('LOCALAPPDATA') ?: '', 'ConcordeAndroid/assinatura.properties')
+    signingConfigs {
+        concorde {
+            if (arquivoAssinatura.exists()) {
+                def p = new Properties()
+                arquivoAssinatura.withInputStream { p.load(it) }
+                storeFile file(p['arquivo'])
+                storePassword p['senha']
+                keyAlias 'concorde'
+                keyPassword p['senha']
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            signingConfig arquivoAssinatura.exists() ? signingConfigs.concorde : signingConfigs.debug
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
+
+dependencies {
+    // WebRTC nativo: compartilhar a tela do celular (MediaProjection) direto no SFU, igual o app do Windows.
+    implementation 'io.github.webrtc-sdk:android:125.6422.07'
+    // Avisos com o app fechado (o servidor manda pelo Firebase Cloud Messaging).
+    implementation platform('com.google.firebase:firebase-bom:33.7.0')
+    implementation 'com.google.firebase:firebase-messaging'
+}

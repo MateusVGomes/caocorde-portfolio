@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="pt-BR"><meta charset="utf-8"><title>Gerando PNGs do logo</title>
+<body style="background:#222;color:#fff;font-family:Segoe UI,sans-serif">
+<pre id="log">gerando…</pre>
+<script>
+// Desenha os SVGs em canvas e manda cada PNG para o gerar.mjs salvar.
+const carregar = src => new Promise((ok, falha) => { const i = new Image(); i.onload = () => ok(i); i.onerror = falha; i.src = src; });
+
+/** Ícone do app: o icone.svg (quadrado laranja com a cabeça-controle metade gato, metade cachorra). */
+function icone(ctx, t, imagem) { ctx.drawImage(imagem, 0, 0, t, t); }
+
+async function salvar(nome, t, desenhar) {
+  const c = Object.assign(document.createElement('canvas'), { width: t, height: t });
+  const ctx = c.getContext('2d');
+  ctx.imageSmoothingQuality = 'high';
+  desenhar(ctx, t);
+  const blob = await new Promise(r => c.toBlob(r, 'image/png'));
+  await fetch('/salvar?nome=' + nome, { method: 'POST', body: blob });
+  document.getElementById('log').textContent += '\n' + nome;
+}
+
+(async () => {
+  const [cor, branco] = await Promise.all([carregar('logo.svg'), carregar('icone.svg')]);
+  await salvar('web/favicon.png', 64, (ctx, t) => icone(ctx, t, branco));
+  await salvar('web/apple-touch-icon.png', 180, (ctx, t) => icone(ctx, t, branco));
+  await salvar('web/logo-app.png', 512, (ctx, t) => icone(ctx, t, branco));
+  await salvar('web/logo.png', 512, (ctx, t) => ctx.drawImage(cor, 0, 0, t, t));
+  for (const t of [16, 24, 32, 48, 64, 128, 256]) await salvar(`app/icone-${t}.png`, t, (ctx, tt) => icone(ctx, tt, branco));
+  document.getElementById('log').textContent += '\nPRONTO';
+})().catch(e => { document.getElementById('log').textContent += '\nERRO ' + e; });
+</script>
+</body></html>

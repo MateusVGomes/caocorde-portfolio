@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+  <!-- Versão de uma cor só (igual o boneco branco do Discord): a silhueta gato + cachorra com olhos, nariz,
+       direcional e botões vazados. Usada no botão das mensagens diretas, por cima do laranja. -->
+  <defs>
+    <mask id="rosto">
+      <rect width="256" height="256" fill="#fff"/>
+      <path d="M70 80 L74 44 L102 70 Z" fill="#000" opacity=".35"/>
+      <path d="M216 130 C208 106 190 86 160 76" fill="none" stroke="#000" stroke-width="5" opacity=".5"/>
+      <path d="M68 118 Q90 100 112 118 Q90 132 68 118 Z" fill="#000"/>
+      <circle cx="168" cy="118" r="11" fill="#000"/>
+      <path d="M114 148 Q128 140 142 148 Q135 160 128 162 Q121 160 114 148 Z" fill="#000"/>
+      <rect x="44" y="152" width="30" height="10" rx="3" fill="#000"/>
+      <rect x="54" y="142" width="10" height="30" rx="3" fill="#000"/>
+      <circle cx="208" cy="143" r="6" fill="#000"/><circle cx="194" cy="157" r="6" fill="#000"/>
+      <circle cx="222" cy="157" r="6" fill="#000"/><circle cx="208" cy="171" r="6" fill="#000"/>
+    </mask>
+  </defs>
+  <g fill="#FFFFFF" mask="url(#rosto)">
+    <path d="M56 96 L64 30 Q66 21 75 27 L120 70 Z"/>
+    <path d="M58 70 C92 58 164 58 198 70 C226 80 242 122 246 170 C249 208 230 228 208 220
+             C194 215 184 198 174 186 C158 177 98 177 82 186 C72 198 62 215 48 220
+             C26 228 7 208 10 170 C14 122 30 80 58 70 Z"/>
+    <path d="M138 68 C158 38 210 26 234 46 C252 62 252 108 238 132 C232 142 220 140 216 130 C208 106 190 86 160 76 Z"/>
+  </g>
+</svg>
